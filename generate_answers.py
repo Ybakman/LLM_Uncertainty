@@ -112,7 +112,7 @@ model = AutoModelForCausalLM.from_pretrained(args.model_name,
                                                 torch_dtype=torch.float16).to(device)
 tokenizer = AutoTokenizer.from_pretrained(args.model_name, use_fast=False)
 
-wandb.init(project='llm-uncertainty',entity='yavuz-team', id=args.run_id, config=args, resume='allow')
+wandb.init(project='mars', id=args.run_id, config=args, resume='allow')
 
 run_name = wandb.run.name
 
@@ -385,7 +385,6 @@ def send_openai_request_with_retries(prompt):
                 seed=seed_value,
                 messages=[{"role": "user", "content": f'{prompt}'}]
             )
-            else
             # If the request is successful, you can process the response here
             return completion
         except openai.error.APIError as e:
@@ -499,7 +498,6 @@ def get_generations(model, dataloader, number_of_generations):
                 for generation in generations[i]:
                     generated_texts.append(
                         tokenizer.decode(generation[len(batch['input_ids'][i]):], skip_special_tokens=True))#We already skip special tokens
-                print(generated_texts)
 
                 sequence_dict['generated_texts'] = generated_texts
                 sequence_dict['most_likely_generation_ids'] = most_likely_generation[0].to('cpu')

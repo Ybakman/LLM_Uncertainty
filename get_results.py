@@ -27,7 +27,7 @@ with open(f'{config.output_dir}/sequences/{args.run_id}/aggregated_likelihoods_{
     overall_results  = pickle.load(f)
 
 
-wandb.init(project='llm-uncertainty',entity='yavuz-team', id=args.run_id, config=args, resume='allow')
+wandb.init(project='mars', id=args.run_id, config=args, resume='allow')
 run_name = wandb.run.name
 
 

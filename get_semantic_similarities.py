@@ -64,7 +64,7 @@ os.environ["HF_DATASETS_CACHE"] = config.hf_datasets_cache
 
 tokenizer = AutoTokenizer.from_pretrained(f"{args.generation_model}", use_fast=False)
 
-wandb.init(project='llm-uncertainty',entity='yavuz-team', id=args.run_id, config=args, resume='allow')
+wandb.init(project='mars', id=args.run_id, config=args, resume='allow')
 
 run_name = wandb.run.name
 

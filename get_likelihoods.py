@@ -64,7 +64,7 @@ model = AutoModelForCausalLM.from_pretrained(f"{args.model_name}",
 tokenizer = AutoTokenizer.from_pretrained(f"{args.model_name}",
                                           use_fast=False)
 
-wandb.init(project='llm-uncertainty',entity='yavuz-team', id=args.run_id, config=args, resume='allow')
+wandb.init(project='mars', id=args.run_id, config=args, resume='allow')
 
 run_name = wandb.run.name
 

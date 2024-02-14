@@ -37,7 +37,7 @@ np.random.seed(seed_value)
 torch.manual_seed(seed_value)
 
 os.environ["HF_DATASETS_CACHE"] = config.hf_datasets_cache
-wandb.init(project='llm-uncertainty',entity='yavuz-team', id=args.run_id, config=args, resume='allow')
+wandb.init(project='mars', id=args.run_id, config=args, resume='allow')
 run_name = wandb.run.name
 
 llh_shift = torch.tensor(5.0)#does not effect anything
