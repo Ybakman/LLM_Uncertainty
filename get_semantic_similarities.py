@@ -22,8 +22,6 @@ from transformers import DataCollatorForTokenClassification
 from transformers import AutoModelForTokenClassification 
 
 
-import wandb
-
 from scipy.special import softmax
 import re
 
@@ -64,9 +62,7 @@ os.environ["HF_DATASETS_CACHE"] = config.hf_datasets_cache
 
 tokenizer = AutoTokenizer.from_pretrained(f"{args.generation_model}", use_fast=False)
 
-wandb.init(project='mars', id=args.run_id, config=args, resume='allow')
-
-run_name = wandb.run.name
+run_name = args.run_id
 
 model_name = args.generation_model.replace("/", "")
 

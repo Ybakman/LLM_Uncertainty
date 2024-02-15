@@ -8,7 +8,6 @@ import pandas as pd
 import sklearn
 import sklearn.metrics
 import torch
-import wandb
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--model_name', type=str, default='facebook/opt-350m')
@@ -26,9 +25,7 @@ with open(f'{config.output_dir}/sequences/{args.run_id}/{model_name}_generations
 with open(f'{config.output_dir}/sequences/{args.run_id}/aggregated_likelihoods_{model_name}_generations.pkl', 'rb') as f:
     overall_results  = pickle.load(f)
 
-
-wandb.init(project='mars', id=args.run_id, config=args, resume='allow')
-run_name = wandb.run.name
+run_name = args.run_id
 
 
 similarities_df = pd.DataFrame.from_dict(similarities_dict, orient='index')
@@ -161,8 +158,6 @@ average_neg_llh_most_likely_gen_auroc = sklearn.metrics.roc_auc_score(
     1 - result_df['correct'], result_df['average_neg_log_likelihood_of_most_likely_gen'])
 result_dict['average_neg_llh_most_likely_gen_auroc'] = average_neg_llh_most_likely_gen_auroc
 
-wandb.log(result_dict)
-wandb.finish()
 with open(f'result_{args.run_id}.json', 'w') as f:
     json.dump(overall_result_dict, f)
 

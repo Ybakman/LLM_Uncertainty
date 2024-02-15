@@ -9,7 +9,6 @@ from tqdm import tqdm
 from transformers import AutoTokenizer
 
 import config
-import wandb
 import re
 
 def is_all_valid_chars(s):
@@ -44,9 +43,7 @@ os.environ["HF_DATASETS_CACHE"] = config.hf_datasets_cache
 
 generation_tokenizer = AutoTokenizer.from_pretrained(f"{args.generation_model}", use_fast=False, cache_dir=config.data_dir)
 
-wandb.init(project='mars', id=args.run_id, config=args, resume='allow')
-
-run_name = wandb.run.name
+run_name = args.run_id
 
 tokenizer = AutoTokenizer.from_pretrained(f"{args.generation_model}", use_fast=False, cache_dir=config.data_dir)
 

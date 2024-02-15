@@ -6,7 +6,6 @@ import random
 import config
 import numpy as np
 import torch
-import wandb
 import copy
 import pandas as pd
 import sklearn
@@ -37,8 +36,7 @@ np.random.seed(seed_value)
 torch.manual_seed(seed_value)
 
 os.environ["HF_DATASETS_CACHE"] = config.hf_datasets_cache
-wandb.init(project='mars', id=args.run_id, config=args, resume='allow')
-run_name = wandb.run.name
+run_name = args.run_id
 
 llh_shift = torch.tensor(5.0)#does not effect anything
 

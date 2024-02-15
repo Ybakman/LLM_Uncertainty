@@ -11,7 +11,6 @@ import evaluate
 import numpy as np
 import torch
 from tqdm import tqdm
-import wandb
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import StoppingCriteria
 import openai
@@ -25,7 +24,7 @@ from datasets import load_dataset
 
 
 
-openai.api_key = "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"
+openai.api_key = "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"#placeholder
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--type_of_question', type=str)
@@ -112,9 +111,7 @@ model = AutoModelForCausalLM.from_pretrained(args.model_name,
                                                 torch_dtype=torch.float16).to(device)
 tokenizer = AutoTokenizer.from_pretrained(args.model_name, use_fast=False)
 
-wandb.init(project='mars', id=args.run_id, config=args, resume='allow')
-
-run_name = wandb.run.name
+run_name = args.run_id
 
 
 if args.dataset == 'trivia_qa':

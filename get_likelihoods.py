@@ -11,7 +11,6 @@ import evaluate
 import numpy as np
 import torch
 from tqdm import tqdm
-import wandb
 from transformers import AutoModelForCausalLM, AutoTokenizer,AutoModelForSequenceClassification
 import os
 import random
@@ -30,7 +29,6 @@ from flair.data import Sentence
 from flair.models import SequenceTagger
 
 
-import wandb
 import re
 
 parser = argparse.ArgumentParser()
@@ -64,9 +62,7 @@ model = AutoModelForCausalLM.from_pretrained(f"{args.model_name}",
 tokenizer = AutoTokenizer.from_pretrained(f"{args.model_name}",
                                           use_fast=False)
 
-wandb.init(project='mars', id=args.run_id, config=args, resume='allow')
-
-run_name = wandb.run.name
+run_name = args.run_id
 
 model_name = args.model_name.replace("/", "")
 
