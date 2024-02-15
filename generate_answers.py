@@ -24,7 +24,7 @@ from datasets import load_dataset
 
 
 
-openai.api_key = "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"#placeholder
+openai.api_key = ""#placeholder
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--type_of_question', type=str)

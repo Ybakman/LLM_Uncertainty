@@ -14,7 +14,7 @@ then activate the environment:
 conda activate mars
 ```
 ## Importance Model
-You can download the importance model from the following link: https://file.io/dajl5Lxdd4Ss and put model.pth inside models folder.
+You can download the importance model from the following [Link](https://file.io/dajl5Lxdd4Ss) and put model_phrase.pth inside models folder.
 
 As a second option, you can train model yourself. First, you should create the labelled dataset using BEM model by running following commands:
 

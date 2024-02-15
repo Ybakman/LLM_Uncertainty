@@ -11,7 +11,6 @@ import evaluate
 import numpy as np
 import torch
 from tqdm import tqdm
-import wandb
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import StoppingCriteria
 import openai

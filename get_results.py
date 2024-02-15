@@ -158,6 +158,7 @@ average_neg_llh_most_likely_gen_auroc = sklearn.metrics.roc_auc_score(
     1 - result_df['correct'], result_df['average_neg_log_likelihood_of_most_likely_gen'])
 result_dict['average_neg_llh_most_likely_gen_auroc'] = average_neg_llh_most_likely_gen_auroc
 
+print(result_dict)
 with open(f'result_{args.run_id}.json', 'w') as f:
-    json.dump(overall_result_dict, f)
+    json.dump(result_dict, f)
 

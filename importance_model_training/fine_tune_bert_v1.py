@@ -11,7 +11,6 @@ from scipy.special import softmax
 import re
 import time
 import argparse
-import wandb
 from tqdm import tqdm
 
 parser = argparse.ArgumentParser()
@@ -22,8 +21,6 @@ parser.add_argument('--epochs', type=int, default=1)
 parser.add_argument('--device', type=int, default=0)
 
 args = parser.parse_args()
-
-wandb.init(project='word_importance_experiments',entity='yavuz-team', id=f'bert_finetuning_v1_{args.temperature}_{args.lr}_{args.epochs}', config=args)
 
 # file_paths = ['data/natural_qa_meta-llama_Llama-2-7b-chat-hf.json',
 #   'data/natural_qa_mistralai_Mistral-7B-v0.1.json',  'data/trivia_qa_meta-llama_Llama-2-7b-chat-hf.json',  
@@ -235,11 +232,6 @@ def train(model, train_loader, test_data, lamda, epochs, lr, device):
                 end_time = time.time()
                 print(f"iteration {iteration}  | Train cls loss: {train_loss1/total_sample:.2f}  | Train scr loss: {train_loss2/total_sample:.2f}\
         | Val cls loss: {class_loss:.2f}  | Val scr loss: {score_loss:.2f}  | {end_time-start_time:.2f}s")
-
-                wandb.log({f"Train cls loss:": train_loss1/total_sample, "iteration": iteration})
-                wandb.log({f"Train scr loss:": train_loss2/total_sample, "iteration": iteration})
-                wandb.log({f"Val cls loss:": class_loss, "iteration": iteration})
-                wandb.log({f"Val scr loss:": score_loss, "iteration": iteration})
 
                 train_loss1, train_loss2, total_sample = 0, 0, 0
                 model.train()
