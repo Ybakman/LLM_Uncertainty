@@ -1,4 +1,5 @@
 # MARS: Meaning Aware Response Scoring
+This repository is built on the [Semantic Uncertainty Repository](https://github.com/lorenzkuhn/semantic_uncertainty)
 
 ## Installing Dependencies
 To create the environment, run the following command:
