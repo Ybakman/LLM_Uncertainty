@@ -1,4 +1,5 @@
 # MARS: Meaning Aware Response Scoring
+This repository is built on the [Semantic Uncertainty Repository](https://github.com/lorenzkuhn/semantic_uncertainty)
 
 ## Installing Dependencies
 To create the environment, run the following command:
@@ -14,7 +15,7 @@ then activate the environment:
 conda activate mars
 ```
 ## Importance Model
-You can download the importance model from the following [Link](https://file.io/dajl5Lxdd4Ss) and put model_phrase.pth inside models folder.
+You can download the importance model from the following [anonymous Google Drive link](https://drive.google.com/file/d/1HyhtNS2xtqJ6yKsdgnYv9lFUC-6Lcx2-/view?usp=sharing) and put model_phrase.pth inside models folder.
 
 As a second option, you can train model yourself. First, you should create the labelled dataset using BEM model by running following commands:
 
