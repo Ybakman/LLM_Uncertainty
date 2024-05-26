@@ -63,15 +63,12 @@ for sample in tqdm(sequences):
 
     max_len_of_generations = cleaned_generations.shape[-1]
 
-    strings_to_filter_on = [
-        '\n','\xa0', '\x85', '\x87', '\x86', '\x93', '\x94', '\x97', 'Q:', 'A:', 'question:', 'answer:', 'Question:', 'Answer:', 'Questions:', 'questions:', 'QUESTION:',
-        'ANSWER:'
-    ]
-
     generated_text = sample['most_likely_generation']
-    for string in strings_to_filter_on:
-        if string in generated_text:
-            generated_text = generated_text.split(string)[0]
+    generated_text_cleaned = re.sub(r'[^\x00-\x7f]',r'', generated_text)
+            
+    if generated_text_cleaned != generated_text:
+        discard = True
+        break
        
 
     if len(generated_text) > 0:
@@ -88,11 +85,10 @@ for sample in tqdm(sequences):
         sample['cleaned_most_likely_generation_ids'] =  clean_ids
 
         for i, generated_text in enumerate(generated_texts):
-            for string in strings_to_filter_on:
-                if string in generated_text:
-                    generated_text = generated_text.split(string)[0]
 
-            if len(generated_text) == 0:
+            generated_text_cleaned = re.sub(r'[^\x00-\x7f]',r'', generated_text)
+            
+            if generated_text_cleaned != generated_text:
                 discard = True
                 break
 
