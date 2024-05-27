@@ -66,7 +66,7 @@ for sample in tqdm(sequences):
     generated_text = sample['most_likely_generation']
     generated_text_cleaned = re.sub(r'[^\x00-\x7f]',r'', generated_text)
                    
-    if generated_text_cleaned != generated_text:
+    if generated_text_cleaned == generated_text:
         if tokenizer.__class__.__name__=='PreTrainedTokenizerFast':
             clean_ids = torch.cat(
                     [sample['prompt'].to(device),
