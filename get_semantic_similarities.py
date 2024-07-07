@@ -81,6 +81,7 @@ semantic_model = AutoModelForSequenceClassification.from_pretrained("microsoft/d
 def inference(model, tokenizer,question, answer):
 
     words = re.findall(r'\w+|[^\w\s]', answer)
+    #print(words)
     #first tokenize
     tokenized_input = tokenizer.encode_plus(
     [question],
@@ -107,6 +108,7 @@ def inference(model, tokenizer,question, answer):
         if word_ids[i] == None or token_type_ids[0][i] == 0:
             i += 1 
             continue
+        
         cl = torch.argmax(classes[i,:])
         if word_ids[i] == 0 or cl == 0: #we handle the edge case as well (beginning of the sentence)
             for j in range(i+1, len(scores)):
@@ -117,10 +119,13 @@ def inference(model, tokenizer,question, answer):
                         continue_word = True
                 if (cl == 0 or  word_ids[j] == None) and continue_word == False:
                     break
-            phrases.append(tokenizer.decode(input_ids[0][i:j]))
+            
+            #find corresponding words by using word_ids
+            min_word_id = word_ids[i]
+            max_word_id = word_ids[j-1]
+            phrases.append(''.join(words[min_word_id:max_word_id+1]))
             importance_scores.append(scores[i].item())
             i = j 
-
 
     #maybe modify phrase with actual sentence
     real_phrases = []
@@ -128,16 +133,18 @@ def inference(model, tokenizer,question, answer):
     i = 0
     answer = answer.strip()
 
+
     while(i < len(answer)):
         last_token_place  = -1
         for j in range(i+1, len(answer)+1):
-            if  phrases[phrase_ind].strip().replace(" ", "") == tokenizer.decode(tokenizer.encode(answer[i:j])[1:-1]).strip().replace(" ", ""):
+
+            if  phrases[phrase_ind].strip().replace(" ", "") == answer[i:j].strip().replace(" ", ""):
                 last_token_place = j
 
-        real_phrases.append(answer[i:last_token_place ].strip())
+        real_phrases.append(answer[i:last_token_place].strip())
         i = last_token_place
         phrase_ind += 1
-        
+            
     return real_phrases, importance_scores
 
 
