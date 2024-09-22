@@ -3,6 +3,8 @@
 This repository provides the implementation for **MARS**: Meaning-Aware Response Scoring. Built upon the [Semantic Uncertainty Repository](https://github.com/lorenzkuhn/semantic_uncertainty), 
 
 **Paper:** [MARS: Meaning-Aware Response Scoring (ACL 2024)](https://aclanthology.org/2024.acl-long.419.pdf)
+
+<img src="mars1.png" alt="MARS" width="1000"/>
   
 ## Installation
 
