@@ -100,3 +100,30 @@ sh run_framework.sh meta-llama/Llama-2-13b-hf web_qa_meta-llama-Llama-2-13b-hf 0
 sh run_framework.sh AdaptLLM/medicine-chat medical_dataset_qa 0 medical_dataset 1.0 0.25
 ```
 
+## Reference
+
+If you use this code or data in your research, please cite the paper:
+```bibtex
+@inproceedings{bakman-etal-2024-mars,
+    title = "{MARS}: Meaning-Aware Response Scoring for Uncertainty Estimation in Generative {LLM}s",
+    author = "Bakman, Yavuz Faruk  and
+      Yaldiz, Duygu Nur  and
+      Buyukates, Baturalp  and
+      Tao, Chenyang  and
+      Dimitriadis, Dimitrios  and
+      Avestimehr, Salman",
+    editor = "Ku, Lun-Wei  and
+      Martins, Andre  and
+      Srikumar, Vivek",
+    booktitle = "Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = aug,
+    year = "2024",
+    address = "Bangkok, Thailand",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.acl-long.419",
+    pages = "7752--7767",
+    abstract = "Generative Large Language Models (LLMs) are widely utilized for their excellence in various tasks. However, their tendency to produce inaccurate or misleading outputs poses a potential risk, particularly in high-stakes environments. Therefore, estimating the correctness of generative LLM outputs is an important task for enhanced reliability. Uncertainty Estimation (UE) in generative LLMs is an evolving domain, where SOTA probability-based methods commonly employ length-normalized scoring. In this work, we propose Meaning-Aware Response Scoring (MARS) as an alternative to length-normalized scoring for UE methods. MARS is a novel scoring function that considers the semantic contribution of each token in the generated sequence in the context of the question. We demonstrate that integrating MARS into UE methods results in a universal and significant improvement in UE performance. We conduct experiments using three distinct closed-book question-answering datasets across five popular pre-trained LLMs. Lastly, we validate the efficacy of MARS on a Medical QA dataset. Code can be found here.",
+}
+```
+
+
